@@ -1,0 +1,6 @@
+## YAML Template.
+---
+name: RPMonitor
+version: 1.0
+author: Rocktopod
+main: com.rockpartymc.RPMonitor
