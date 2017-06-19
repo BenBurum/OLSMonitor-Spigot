@@ -5,10 +5,6 @@
  */
 package com.rockpartymc;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -19,40 +15,25 @@ import org.bukkit.scheduler.BukkitScheduler;
  */
 public class RPMonitor extends JavaPlugin {
     FileConfiguration config = getConfig();
-    
+    private static RPMonitor pluginReference;
+            
     @Override
     public void onEnable() {
         //Create and set config values
         config.addDefault("log-ram", true);
         config.options().copyDefaults(true);
         saveConfig();
+        pluginReference = this;
+    
         
         //schedule the task
         BukkitScheduler scheduler = getServer().getScheduler();
         scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
         
-        //gets current time in ms
+        //gets current time in ms 
             @Override
             public void run() {
-        long timeNow = System.currentTimeMillis();
-        String outString = String.valueOf(timeNow);
-        
-        //create log file
-        File log = new File(getDataFolder(), "log.txt");
-            try {
-                log.createNewFile();
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
-        //save the string to the text file
-        try(PrintWriter out = new PrintWriter(log)){
-            out.println(outString);
-            out.close();
-        }
-        catch(FileNotFoundException e){
-            e.printStackTrace();
-        }
+                MainThread.writeToFile();
 
             }
         }, 0L, 600L);
@@ -61,4 +42,41 @@ public class RPMonitor extends JavaPlugin {
     @Override
     public void onDisable() {
     }    
+    
+	public static String checkRam(String [] args) {
+		
+		int mb = 1024*1024;
+                String ramInfo = new String();
+		
+		//Getting the runtime reference from system
+		Runtime runtime = Runtime.getRuntime();
+		
+		String lineOne = ("##### Heap utilization statistics [MB] #####");
+		
+		//Print used memory
+		String usedRam = ("Used Memory:" 
+			+ (runtime.totalMemory() - runtime.freeMemory()) / mb);
+
+		//Print free memory
+		String freeRam = ("Free Memory:" 
+			+ runtime.freeMemory() / mb);
+		
+		//Print total available memory
+		String totalRam = ("Total Memory:" + runtime.totalMemory() / mb);
+
+		//Print Maximum available memory
+		String maxRam = ("Max Memory:" + runtime.maxMemory() / mb);
+                
+                ramInfo = lineOne + "\n" + usedRam + "\n" + freeRam + "\n" + totalRam + "\n" + maxRam;
+                
+                return ramInfo;
+	}
+        
+    public static RPMonitor getPlugin() {
+        
+        return pluginReference;
+    }
+
 }
+
+
