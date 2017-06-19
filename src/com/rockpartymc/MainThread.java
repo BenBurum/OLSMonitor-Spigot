@@ -20,7 +20,9 @@ public class MainThread {
     
     public static void writeToFile (){
         long timeNow = System.currentTimeMillis();
-        String outString = String.valueOf(timeNow) + "\n";
+        String outString = "";
+        outString += String.valueOf(timeNow) + System.lineSeparator();
+        outString += Utilities.checkRam();
         
         //create log file
         File log = new File(RPMonitor.getPlugin().getDataFolder(), "log.txt");

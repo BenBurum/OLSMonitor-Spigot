@@ -24,6 +24,7 @@ public class RPMonitor extends JavaPlugin {
         config.options().copyDefaults(true);
         saveConfig();
         pluginReference = this;
+        int interval = 600;
     
         
         //schedule the task
@@ -36,41 +37,13 @@ public class RPMonitor extends JavaPlugin {
                 MainThread.writeToFile();
 
             }
-        }, 0L, 600L);
+        }, 0L, interval);
     }
     
     @Override
     public void onDisable() {
     }    
-    
-	public static String checkRam(String [] args) {
-		
-		int mb = 1024*1024;
-                String ramInfo = new String();
-		
-		//Getting the runtime reference from system
-		Runtime runtime = Runtime.getRuntime();
-		
-		String lineOne = ("##### Heap utilization statistics [MB] #####");
-		
-		//Print used memory
-		String usedRam = ("Used Memory:" 
-			+ (runtime.totalMemory() - runtime.freeMemory()) / mb);
-
-		//Print free memory
-		String freeRam = ("Free Memory:" 
-			+ runtime.freeMemory() / mb);
-		
-		//Print total available memory
-		String totalRam = ("Total Memory:" + runtime.totalMemory() / mb);
-
-		//Print Maximum available memory
-		String maxRam = ("Max Memory:" + runtime.maxMemory() / mb);
-                
-                ramInfo = lineOne + "\n" + usedRam + "\n" + freeRam + "\n" + totalRam + "\n" + maxRam;
-                
-                return ramInfo;
-	}
+   
         
     public static RPMonitor getPlugin() {
         

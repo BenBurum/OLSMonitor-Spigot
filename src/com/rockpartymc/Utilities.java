@@ -10,7 +10,7 @@ package com.rockpartymc;
  * @author Ben
  */
 public class Utilities {
-    	public static String checkRam(String [] args) {
+    	public static String checkRam() {
 		
 		int mb = 1024*1024;
                 String ramInfo = new String();
@@ -21,20 +21,20 @@ public class Utilities {
 		String lineOne = ("##### Heap utilization statistics [MB] #####");
 		
 		//Print used memory
-		String usedRam = ("Used Memory:" 
-			+ (runtime.totalMemory() - runtime.freeMemory()) / mb);
+		String usedRam = ("Used Memory: " 
+			+ (runtime.totalMemory() - runtime.freeMemory()) / mb) ;
 
 		//Print free memory
-		String freeRam = ("Free Memory:" 
+		String freeRam = ("Free Memory: " 
 			+ runtime.freeMemory() / mb);
 		
 		//Print total available memory
-		String totalRam = ("Total Memory:" + runtime.totalMemory() / mb);
+		String totalRam = ("Total Memory: " + runtime.totalMemory() / mb);
 
 		//Print Maximum available memory
-		String maxRam = ("Max Memory:" + runtime.maxMemory() / mb);
+		String maxRam = ("Max Memory: " + runtime.maxMemory() / mb);
                 
-                ramInfo = lineOne + "\n" + usedRam + "\n" + freeRam + "\n" + totalRam + "\n" + maxRam;
+                ramInfo = lineOne + System.lineSeparator() + usedRam + System.lineSeparator() + freeRam + System.lineSeparator() + totalRam + System.lineSeparator() + maxRam;
                 
                 return ramInfo;
 	}
