@@ -9,23 +9,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static org.bukkit.Bukkit.getServer;
-import org.bukkit.scheduler.BukkitScheduler;
 
 /**
  *
  * @author Ben
  */
 public class MainThread {
-    
+        static String outString = "";
     public static void writeToFile (){
-        long timeNow = System.currentTimeMillis();
-        String outString = "";
-        outString += RPMonitor.interval + System.lineSeparator();
-        outString += String.valueOf(timeNow) + System.lineSeparator();
-        outString += Utilities.checkRam();
-        outString += Utilities.checkCpu();
-        
+
         //create log file
         File log = new File(RPMonitor.getPlugin().getDataFolder(), "log.txt");
             try {
@@ -43,5 +35,22 @@ public class MainThread {
             e.printStackTrace();
         }
 
+    }
+    
+    //Print Ram use inf0
+    public static void printRam() {
+        outString += Utilities.checkRam();
+    }
+    
+    //print CPU Load info
+    public static void printCpu() {
+        outString += Utilities.checkCpu();
+    }
+    
+    //print the interval and the time
+    public static void printBasic(){
+        long timeNow = System.currentTimeMillis();
+        outString += RPMonitor.interval + System.lineSeparator();
+        outString += String.valueOf(timeNow) + System.lineSeparator();
     }
 }

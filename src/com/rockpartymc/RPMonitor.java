@@ -16,12 +16,13 @@ import org.bukkit.scheduler.BukkitScheduler;
 public class RPMonitor extends JavaPlugin {
     FileConfiguration config = getConfig();
     private static RPMonitor pluginReference;
-    public static int interval = 600;   
+    public static int interval = 600;
  
     @Override
     public void onEnable() {
         //Create and set config values
-        config.addDefault("log-ram", true);
+        config.addDefault("check-ram", true);
+        config.addDefault("check-CPU", true);
         config.options().copyDefaults(true);
         saveConfig();
         pluginReference = this;
@@ -35,6 +36,13 @@ public class RPMonitor extends JavaPlugin {
         //gets current time in ms 
             @Override
             public void run() {
+                MainThread.printBasic();
+                if (config.getBoolean("check-ram")){
+                    MainThread.printRam();
+                }
+                if (config.getBoolean("check-CPU")){
+                    MainThread.printCpu();
+                }
                 MainThread.writeToFile();
 
             }
