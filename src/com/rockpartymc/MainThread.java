@@ -21,8 +21,10 @@ public class MainThread {
     public static void writeToFile (){
         long timeNow = System.currentTimeMillis();
         String outString = "";
+        outString += RPMonitor.interval + System.lineSeparator();
         outString += String.valueOf(timeNow) + System.lineSeparator();
         outString += Utilities.checkRam();
+        outString += Utilities.checkCpu();
         
         //create log file
         File log = new File(RPMonitor.getPlugin().getDataFolder(), "log.txt");

@@ -16,7 +16,8 @@ import org.bukkit.scheduler.BukkitScheduler;
 public class RPMonitor extends JavaPlugin {
     FileConfiguration config = getConfig();
     private static RPMonitor pluginReference;
-            
+    public static int interval = 600;   
+ 
     @Override
     public void onEnable() {
         //Create and set config values
@@ -24,7 +25,7 @@ public class RPMonitor extends JavaPlugin {
         config.options().copyDefaults(true);
         saveConfig();
         pluginReference = this;
-        int interval = 600;
+
     
         
         //schedule the task
