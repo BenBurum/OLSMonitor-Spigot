@@ -32,14 +32,22 @@ public class RPMonitor extends JavaPlugin {
         config.addDefault("check-CPU", true);
         config.addDefault("list-players", true);
         config.addDefault("logfile-name", "log");
-        config.addDefault("custom-path", false);
-        config.addDefault("custom-path-location", null);
+        config.addDefault("custom-log-path", false);
+        config.addDefault("custom-path-location", "plugins\\RPMonitor");
         config.options().copyDefaults(true);
         saveConfig();
 
-
-    
-        
+        //check for custom path for log file
+        if (config.getBoolean("custom-log-path")){
+            String logPathString = config.getString("custom-path-location");
+            logPath = new File(logPathString);
+            if (!logPath.isDirectory()){
+                if (!logPath.mkdirs()){
+                    logPath = this.getDataFolder();
+                }
+                
+            }
+        }
         //schedule the task
         BukkitScheduler scheduler = getServer().getScheduler();
         scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
