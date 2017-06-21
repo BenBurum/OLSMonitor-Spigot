@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+//TODO: login/logout listener
+
 package com.rockpartymc;
 
+import java.io.File;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -17,15 +21,22 @@ public class RPMonitor extends JavaPlugin {
     FileConfiguration config = getConfig();
     private static RPMonitor pluginReference;
     public static int interval = 600;
+    private static File logPath;
  
     @Override
     public void onEnable() {
         //Create and set config values
+        pluginReference = this;
+        logPath = this.getDataFolder();
         config.addDefault("check-ram", true);
         config.addDefault("check-CPU", true);
+        config.addDefault("list-players", true);
+        config.addDefault("logfile-name", "log");
+        config.addDefault("custom-path", false);
+        config.addDefault("custom-path-location", null);
         config.options().copyDefaults(true);
         saveConfig();
-        pluginReference = this;
+
 
     
         
@@ -36,13 +47,6 @@ public class RPMonitor extends JavaPlugin {
         //gets current time in ms 
             @Override
             public void run() {
-                MainThread.printBasic();
-                if (config.getBoolean("check-ram")){
-                    MainThread.printRam();
-                }
-                if (config.getBoolean("check-CPU")){
-                    MainThread.printCpu();
-                }
                 MainThread.writeToFile();
 
             }
@@ -57,6 +61,10 @@ public class RPMonitor extends JavaPlugin {
     public static RPMonitor getPlugin() {
         
         return pluginReference;
+    }
+    
+    public static File getLogPath(){
+        return logPath;
     }
 
 }

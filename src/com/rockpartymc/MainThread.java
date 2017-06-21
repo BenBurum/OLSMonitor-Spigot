@@ -7,37 +7,65 @@ package com.rockpartymc;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import static org.bukkit.Bukkit.getOnlinePlayers;
 
 /**
  *
  * @author Ben
  */
 public class MainThread {
-        static String outString = "";
+    static String outString = "";
+      
     public static void writeToFile (){
-
-        //create log file
-        File log = new File(RPMonitor.getPlugin().getDataFolder(), "log.txt");
+        outString = "";
+        //Initialize OutputStream and save string to file.
+        try {
+            File log = new File(RPMonitor.getLogPath(), RPMonitor.getPlugin().config.getString("logfile-name") + ".monitordata");
+            FileOutputStream fos = new FileOutputStream(log);
+            FileChannel fileChannel = fos.getChannel();
+                   
+            //write to outString
             try {
-                log.createNewFile();
+                FileLock lock = fileChannel.lock();
+
+                PrintWriter out = new PrintWriter(fos);
+                printBasic();
+                //check config for "check-ram" option
+                if (RPMonitor.getPlugin().config.getBoolean("check-ram")){
+                    printRam();
+                }
+                //check config for "check-CPU" option
+                if (RPMonitor.getPlugin().config.getBoolean("check-CPU")){
+                    printCpu();
+                }
+                //check config for "list-players" option
+                if (RPMonitor.getPlugin().config.getBoolean("list-players")){
+                    printPlayers();
+                }
+                out.println(outString);
+                lock.release();
+                out.close();
+                fos.close();
+                
             }
             catch (IOException e){
                 e.printStackTrace();
             }
-        //save the string to the text file
-        try(PrintWriter out = new PrintWriter(log)){
-            out.println(outString);
-            out.close();
         }
-        catch(FileNotFoundException e){
+        catch (FileNotFoundException e){
             e.printStackTrace();
         }
+        
+        
 
     }
     
-    //Print Ram use inf0
+    //Print Ram use info
     public static void printRam() {
         outString += Utilities.checkRam();
     }
@@ -52,5 +80,9 @@ public class MainThread {
         long timeNow = System.currentTimeMillis();
         outString += RPMonitor.interval + System.lineSeparator();
         outString += String.valueOf(timeNow) + System.lineSeparator();
+    }
+    
+    public static void printPlayers(){
+        outString += getOnlinePlayers();
     }
 }
