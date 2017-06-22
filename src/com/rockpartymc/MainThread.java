@@ -31,7 +31,7 @@ public class MainThread {
                    
             //write to outString
             try {
-                //lock the outputstream
+                //lock the outputstream so the servermanager program can't interfere.
                 FileLock lock = fileChannel.lock();
 
                 PrintWriter out = new PrintWriter(fos);
@@ -85,6 +85,6 @@ public class MainThread {
     }
     
     public static void printPlayers(){
-        outString += getOnlinePlayers();
+        outString += "Players:" + getOnlinePlayers().size();
     }
 }

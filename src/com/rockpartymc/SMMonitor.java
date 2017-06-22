@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-//TODO: login/logout listener, commands: reload, pause, plugin.yml, 
+//TODO: Add interval to config, add tps, login/logout listener, commands: reload, pause, plugin.yml, 
 
 package com.rockpartymc;
 
@@ -25,6 +25,8 @@ public class SMMonitor extends JavaPlugin {
  
     @Override
     public void onEnable() {
+        //register commands
+//        this.getCommand("reload").setExecutor(new Reload());
         //Create and set config values
         pluginReference = this;
         logPath = this.getDataFolder();

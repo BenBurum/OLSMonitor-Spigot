@@ -21,24 +21,24 @@ public class Utilities {
 		//Getting the runtime reference from system
 		Runtime runtime = Runtime.getRuntime();
 		
-		String lineOne = ("##### Heap utilization statistics [MB] #####");
+		String lineOne = ("RAM: ");
 		
 		//Print used memory
-		String usedRam = ("Used Memory: " 
+		String usedRam = ("Used:" 
 			+ (runtime.totalMemory() - runtime.freeMemory()) / mb) ;
 
 		//Print free memory
-		String freeRam = ("Free Memory: " 
+		String freeRam = ("Free:" 
 			+ runtime.freeMemory() / mb);
 		
 		//Print total available memory
-		String totalRam = ("Total Memory: " + runtime.totalMemory() / mb);
+		String totalRam = ("Total:" + runtime.totalMemory() / mb);
 
 		//Print Maximum available memory
-		String maxRam = ("Max Memory: " + runtime.maxMemory() / mb);
+		String maxRam = ("Max:" + runtime.maxMemory() / mb);
                 
                 //create string for output
-                ramInfo = lineOne + System.lineSeparator() + usedRam + System.lineSeparator() + freeRam + System.lineSeparator() + totalRam + System.lineSeparator() + maxRam + System.lineSeparator();
+                ramInfo = lineOne + " " + usedRam + " " + freeRam + " " + totalRam + " " + maxRam + " ";
                 
                 return ramInfo;
 	}
@@ -49,19 +49,21 @@ public class Utilities {
             
 //            Runtime runtime = Runtime.getRuntime();
             
-            String lineOne = ("##### CPU Load Statistics ####");
+            String lineOne = ("CPU: ");
             
             //get process cpu load
-            String processCpuLoad = "Process CPU Load: " + String.valueOf(operatingSystemMXBean.getProcessCpuLoad()*100) + '%';
+            double processCpuLoadDouble = (operatingSystemMXBean.getProcessCpuLoad()*100);
+            int processCpuLoadInt = (int) Math.round(processCpuLoadDouble);
+            String processCpuLoad = String.valueOf(processCpuLoadInt) + '%';
             
             //get process cpu time
-            String processCpuTime = "Process CPU Time: " + String.valueOf(operatingSystemMXBean.getProcessCpuTime()) + "ns";
+//            String processCpuTime = "Process CPU Time: " + String.valueOf(operatingSystemMXBean.getProcessCpuTime()) + "ns";
             
             //get system cpu load
-            String systemCpuLoad = "System CPU Load: " + String.valueOf(operatingSystemMXBean.getSystemCpuLoad()*100) + '%';
+//            String systemCpuLoad = "System CPU Load: " + String.valueOf(operatingSystemMXBean.getSystemCpuLoad()*100) + '%';
             
             //create string for output
-            cpuInfo = lineOne + System.lineSeparator() + processCpuLoad + System.lineSeparator() + processCpuTime + System.lineSeparator() + systemCpuLoad + System.lineSeparator();
+            cpuInfo = System.lineSeparator() + lineOne + " " + processCpuLoad + " ";
 
             
             return cpuInfo;
