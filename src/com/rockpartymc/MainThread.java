@@ -25,28 +25,30 @@ public class MainThread {
         outString = "";
         //Initialize OutputStream and save string to file.
         try {
-            File log = new File(RPMonitor.getLogPath(), RPMonitor.getPlugin().config.getString("logfile-name") + ".monitordata");
+            File log = new File(SMMonitor.getLogPath(), SMMonitor.getPlugin().config.getString("logfile-name") + ".monitordata");
             FileOutputStream fos = new FileOutputStream(log);
             FileChannel fileChannel = fos.getChannel();
                    
             //write to outString
             try {
+                //lock the outputstream
                 FileLock lock = fileChannel.lock();
 
                 PrintWriter out = new PrintWriter(fos);
                 printBasic();
                 //check config for "check-ram" option
-                if (RPMonitor.getPlugin().config.getBoolean("check-ram")){
+                if (SMMonitor.getPlugin().config.getBoolean("check-ram")){
                     printRam();
                 }
                 //check config for "check-CPU" option
-                if (RPMonitor.getPlugin().config.getBoolean("check-CPU")){
+                if (SMMonitor.getPlugin().config.getBoolean("check-CPU")){
                     printCpu();
                 }
                 //check config for "list-players" option
-                if (RPMonitor.getPlugin().config.getBoolean("list-players")){
+                if (SMMonitor.getPlugin().config.getBoolean("list-players")){
                     printPlayers();
                 }
+                //Finally print the string to the log and close writers.
                 out.println(outString);
                 lock.release();
                 out.close();
@@ -78,7 +80,7 @@ public class MainThread {
     //print the interval and the time
     public static void printBasic(){
         long timeNow = System.currentTimeMillis();
-        outString += RPMonitor.interval + System.lineSeparator();
+        outString += SMMonitor.interval + System.lineSeparator();
         outString += String.valueOf(timeNow) + System.lineSeparator();
     }
     

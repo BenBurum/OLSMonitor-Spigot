@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-//TODO: login/logout listener
+//TODO: login/logout listener, commands: reload, pause, plugin.yml, 
 
 package com.rockpartymc;
 
@@ -17,9 +17,9 @@ import org.bukkit.scheduler.BukkitScheduler;
  *
  * @author Ben
  */
-public class RPMonitor extends JavaPlugin {
+public class SMMonitor extends JavaPlugin {
     FileConfiguration config = getConfig();
-    private static RPMonitor pluginReference;
+    private static SMMonitor pluginReference;
     public static int interval = 600;
     private static File logPath;
  
@@ -33,7 +33,7 @@ public class RPMonitor extends JavaPlugin {
         config.addDefault("list-players", true);
         config.addDefault("logfile-name", "log");
         config.addDefault("custom-log-path", false);
-        config.addDefault("custom-path-location", "plugins\\RPMonitor");
+        config.addDefault("custom-path-location", "plugins\\SMMonitor");
         config.options().copyDefaults(true);
         saveConfig();
 
@@ -66,7 +66,7 @@ public class RPMonitor extends JavaPlugin {
     }    
    
         
-    public static RPMonitor getPlugin() {
+    public static SMMonitor getPlugin() {
         
         return pluginReference;
     }
