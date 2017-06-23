@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 
-/*TODO: Change interval to ms instead of ticks, 
-Add debug messages (printing, locking, if path provided is invalid, etc), 
-add tps, login/logout listener, 
+/*TODO:  
+login/logout listener, 
 commands: reload, pause; 
 plugin.yml, 
 */
@@ -38,6 +37,7 @@ public class SMMonitor extends JavaPlugin {
         config.addDefault("debug-mode", false);
         config.addDefault("check-ram", true);
         config.addDefault("check-CPU", true);
+        config.addDefault("check-tps", true);
         config.addDefault("list-players", true);
         config.addDefault("logfile-name", "log");
         config.addDefault("custom-log-path", false);

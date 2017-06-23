@@ -48,6 +48,10 @@ public class MainThread {
                 if (SMMonitor.getPlugin().config.getBoolean("check-CPU")){
                     printCpu();
                 }
+                //Check config cor "check-tps" option
+                 if (SMMonitor.getPlugin().config.getBoolean("check-tps")){
+                    printTps();
+                }
                 //check config for "list-players" option
                 if (SMMonitor.getPlugin().config.getBoolean("list-players")){
                     printPlayers();
@@ -56,7 +60,9 @@ public class MainThread {
                 if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
                     System.out.println("[SMMonitor] - Writing to log file");
                 }
+                
                 out.println(outString);
+                
                 if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
                     System.out.println("[SMMonitor] - Unlocking Log File");
                 }
@@ -90,11 +96,17 @@ public class MainThread {
     //print the interval and the time
     public static void printBasic(){
         long timeNow = System.currentTimeMillis();
-        outString += SMMonitor.interval + System.lineSeparator();
+        outString += (SMMonitor.interval*50) + System.lineSeparator();
         outString += String.valueOf(timeNow) + System.lineSeparator();
     }
     
+    //Print the number of players
     public static void printPlayers(){
         outString += "Players:" + getOnlinePlayers().size();
+    }
+    
+    //Print the TPS info
+    public static void printTps(){
+        outString += Utilities.checkTps();
     }
 }

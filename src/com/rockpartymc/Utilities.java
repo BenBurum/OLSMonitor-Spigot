@@ -8,6 +8,7 @@ package com.rockpartymc;
 import java.lang.management.ManagementFactory;
 import com.sun.management.OperatingSystemMXBean;
 
+
 /**
  *
  * @author Ben
@@ -26,7 +27,6 @@ public class Utilities {
             //Getting the runtime reference from system
             Runtime runtime = Runtime.getRuntime();
 
-            String lineOne = ("RAM: ");
 
             //Print used memory
             String usedRam = ("Used:" 
@@ -43,7 +43,7 @@ public class Utilities {
             String maxRam = ("Max:" + runtime.maxMemory() / mb);
 
             //create string for output
-            ramInfo = lineOne + " " + usedRam + " " + freeRam + " " + totalRam + " " + maxRam + " ";
+            ramInfo = "Ram: " + usedRam + " " + freeRam + " " + totalRam + " " + maxRam + " ";
 
             return ramInfo;
 	}
@@ -57,7 +57,6 @@ public class Utilities {
             
 //            Runtime runtime = Runtime.getRuntime();
             
-            String lineOne = ("CPU: ");
             
             //get process cpu load
             double processCpuLoadDouble = (operatingSystemMXBean.getProcessCpuLoad()*100);
@@ -71,10 +70,21 @@ public class Utilities {
 //            String systemCpuLoad = "System CPU Load: " + String.valueOf(operatingSystemMXBean.getSystemCpuLoad()*100) + '%';
             
             //create string for output
-            cpuInfo = System.lineSeparator() + lineOne + " " + processCpuLoad + " ";
+            cpuInfo = System.lineSeparator() + "CPU:" + processCpuLoad + " ";
 
             
             return cpuInfo;
+        }
+        
+        public static String checkTps(){
+            if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
+                System.out.println("[SMMonitor] - Checking TPS");
+            }
+            String tpsInfo = new String();
+            double tps = Lag.getTPS();
+            tpsInfo = "TPS:" + String.valueOf(tps);
+            
+            return tpsInfo;
         }
 }
 
