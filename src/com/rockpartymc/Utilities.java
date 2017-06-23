@@ -14,36 +14,44 @@ import com.sun.management.OperatingSystemMXBean;
  */
 public class Utilities {
     	public static String checkRam() {
-		
-		int mb = 1024*1024;
-                String ramInfo = new String();
-		
-		//Getting the runtime reference from system
-		Runtime runtime = Runtime.getRuntime();
-		
-		String lineOne = ("RAM: ");
-		
-		//Print used memory
-		String usedRam = ("Used:" 
-			+ (runtime.totalMemory() - runtime.freeMemory()) / mb) ;
-
-		//Print free memory
-		String freeRam = ("Free:" 
-			+ runtime.freeMemory() / mb);
-		
-		//Print total available memory
-		String totalRam = ("Total:" + runtime.totalMemory() / mb);
-
-		//Print Maximum available memory
-		String maxRam = ("Max:" + runtime.maxMemory() / mb);
                 
-                //create string for output
-                ramInfo = lineOne + " " + usedRam + " " + freeRam + " " + totalRam + " " + maxRam + " ";
-                
-                return ramInfo;
+            if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
+                System.out.println("[SMMonitor] - Checking Ram");
+            }
+            
+
+            int mb = 1024*1024;
+            String ramInfo = new String();
+
+            //Getting the runtime reference from system
+            Runtime runtime = Runtime.getRuntime();
+
+            String lineOne = ("RAM: ");
+
+            //Print used memory
+            String usedRam = ("Used:" 
+                    + (runtime.totalMemory() - runtime.freeMemory()) / mb) ;
+
+            //Print free memory
+            String freeRam = ("Free:" 
+                    + runtime.freeMemory() / mb);
+
+            //Print total available memory
+            String totalRam = ("Total:" + runtime.totalMemory() / mb);
+
+            //Print Maximum available memory
+            String maxRam = ("Max:" + runtime.maxMemory() / mb);
+
+            //create string for output
+            ramInfo = lineOne + " " + usedRam + " " + freeRam + " " + totalRam + " " + maxRam + " ";
+
+            return ramInfo;
 	}
         
         public static String checkCpu() {
+            if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
+                System.out.println("[SMMonitor] - Checking CPU");
+            }
             OperatingSystemMXBean operatingSystemMXBean = (com.sun.management.OperatingSystemMXBean)ManagementFactory.getOperatingSystemMXBean();
             String cpuInfo = new String();
             

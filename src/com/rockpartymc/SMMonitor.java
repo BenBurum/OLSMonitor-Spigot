@@ -4,7 +4,12 @@
  * and open the template in the editor.
  */
 
-//TODO: Add interval to config, add tps, login/logout listener, commands: reload, pause, plugin.yml, 
+/*TODO: Change interval to ms instead of ticks, 
+Add debug messages (printing, locking, if path provided is invalid, etc), 
+add tps, login/logout listener, 
+commands: reload, pause; 
+plugin.yml, 
+*/
 
 package com.rockpartymc;
 
@@ -30,21 +35,30 @@ public class SMMonitor extends JavaPlugin {
         //Create and set config values
         pluginReference = this;
         logPath = this.getDataFolder();
+        config.addDefault("debug-mode", false);
         config.addDefault("check-ram", true);
         config.addDefault("check-CPU", true);
         config.addDefault("list-players", true);
         config.addDefault("logfile-name", "log");
         config.addDefault("custom-log-path", false);
         config.addDefault("custom-path-location", "plugins\\SMMonitor");
+        config.addDefault("log-interval", 600);
+        config.addDefault("debug-mode", false);
         config.options().copyDefaults(true);
         saveConfig();
 
+        //set the log interval to the amount specified in the config.
+        interval = config.getInt("log-interval");
+        
         //check for custom path for log file
         if (config.getBoolean("custom-log-path")){
             String logPathString = config.getString("custom-path-location");
+            System.out.println("[SMMonitor] - Custom Path set to " + logPathString);
             logPath = new File(logPathString);
             if (!logPath.isDirectory()){
+                System.out.println("[SMMonitor] - Path not found.  Attempting to Create");
                 if (!logPath.mkdirs()){
+                    System.out.println("[SMMonitor] - Unable to create directory.  Using Default path.");
                     logPath = this.getDataFolder();
                 }
                 
