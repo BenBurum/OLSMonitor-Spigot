@@ -5,7 +5,6 @@
  */
 package com.rockpartymc;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,37 +16,8 @@ import org.bukkit.command.CommandSender;
 public class Reload implements CommandExecutor {
     
     @Override
-    public boolean onCommand(CommandSender sender, Command smmonitor, String label, String[] args){
-        try {
-            if (args.length > 0){
-                if (args[0] != null) {
-                    if (args[0] == "reload"){
-                        sender.sendMessage("[SMMonitor] - Reloading config.");
-                        //reload the config file
-                        SMMonitor.getPlugin().reloadConfig();
-                        //attmept to reset the path for log file
-                        SMMonitor.setCustomPath();
-                        //get interval from config
-                        SMMonitor.interval = SMMonitor.getPlugin().getConfig().getInt("log-interval");
-                        System.out.println("[SMMonitor] - Log interval set to " + SMMonitor.interval + " ticks");
-                        Bukkit.getServer().getScheduler().cancelTask(SMMonitor.getPlugin().schedId);
-                        System.out.println("[SMMonitor] - restarting scheduler");
-                        SMMonitor.startScheduler();
-                    }
-                }
-                else if (args[0] == null) {
-                    sender.sendMessage("Possible Commands: " + "/smm reload");
-                }
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-
+    public boolean onCommand(CommandSender sender, Command servermanager, String reload, String[] args){
+        SMMonitor.getPlugin().getConfig();
         return true;
     }
-    
-    
-
 }
