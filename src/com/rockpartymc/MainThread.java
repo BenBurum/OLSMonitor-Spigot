@@ -6,7 +6,6 @@
 package com.rockpartymc;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,12 +23,12 @@ public class MainThread {
     public static void writeToFile (){
         outString = "";
         //Initialize OutputStream and save string to file.
-        File log = new File(SMMonitor.getLogPath(), SMMonitor.getPlugin().config.getString("logfile-name") + ".monitordata");
+        File log = new File(SMMonitor.getLogPath(), SMMonitor.getPlugin().getConfig().getString("logfile-name") + ".monitordata");
         try (FileOutputStream fos = new FileOutputStream(log,true)) {
             
                 FileChannel fileChannel = fos.getChannel();
                 //lock the outputstream so the servermanager program can't interfere.
-                if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
+                if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
                     System.out.println("[SMMonitor] - Locking Log File");
                 }
                 
@@ -39,29 +38,29 @@ public class MainThread {
                 PrintWriter out = new PrintWriter(fos);
                 printBasic();
                 //check config for "check-ram" option
-                if (SMMonitor.getPlugin().config.getBoolean("check-ram")){
+                if (SMMonitor.getPlugin().getConfig().getBoolean("check-ram")){
                     printRam();
                 }
                 //check config for "check-CPU" option
-                if (SMMonitor.getPlugin().config.getBoolean("check-CPU")){
+                if (SMMonitor.getPlugin().getConfig().getBoolean("check-CPU")){
                     printCpu();
                 }
                 //Check config cor "check-tps" option
-                 if (SMMonitor.getPlugin().config.getBoolean("check-tps")){
+                 if (SMMonitor.getPlugin().getConfig().getBoolean("check-tps")){
                     printTps();
                 }
                 //check config for "list-players" option
-                if (SMMonitor.getPlugin().config.getBoolean("list-players")){
+                if (SMMonitor.getPlugin().getConfig().getBoolean("list-players")){
                     printPlayers();
                 }
                 //Finally print the string to the log and close writers.
-                if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
+                if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
                     System.out.println("[SMMonitor] - Writing to log file");
                 }
                 
                 out.println(outString);
                 
-                if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
+                if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
                     System.out.println("[SMMonitor] - Unlocking Log File");
                 }
                 out.close();

@@ -4,3 +4,9 @@ name: SMMonitor
 version: 1.0
 author: Rocktopod
 main: com.rockpartymc.SMMonitor
+
+commands:
+    smmonitor:
+        description: Commands for SMMonitor.  Alias /smm
+        aliases: [smm]
+        usage: /smmonitor

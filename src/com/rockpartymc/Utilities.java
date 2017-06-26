@@ -16,7 +16,7 @@ import com.sun.management.OperatingSystemMXBean;
 public class Utilities {
     	public static String checkRam() {
                 
-            if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
+            if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
                 System.out.println("[SMMonitor] - Checking Ram");
             }
             
@@ -49,7 +49,7 @@ public class Utilities {
 	}
         
         public static String checkCpu() {
-            if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
+            if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
                 System.out.println("[SMMonitor] - Checking CPU");
             }
             OperatingSystemMXBean operatingSystemMXBean = (com.sun.management.OperatingSystemMXBean)ManagementFactory.getOperatingSystemMXBean();
@@ -77,12 +77,12 @@ public class Utilities {
         }
         
         public static String checkTps(){
-            if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
+            if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
                 System.out.println("[SMMonitor] - Checking TPS");
             }
             String tpsInfo = new String();
             double tps = Lag.getTPS();
-            tpsInfo = "TPS:" + String.valueOf(tps);
+            tpsInfo = "TPS:" + String.valueOf(tps) + " ";
             
             return tpsInfo;
         }
