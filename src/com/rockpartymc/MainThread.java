@@ -75,12 +75,12 @@ public class MainThread {
     
     //Print Ram use info
     public static void printRam() {
-        outString += Utilities.checkRam();
+        outString += String.format("%-20s",Utilities.checkRam());
     }
     
     //print CPU Load info
     public static void printCpu() {
-        outString += Utilities.checkCpu();
+        outString += String.format("%-20s",Utilities.checkCpu());
     }
     
     //print the interval and the time
@@ -92,11 +92,11 @@ public class MainThread {
     
     //Print the number of players
     public static void printPlayers(){
-        outString += "Players:" + getOnlinePlayers().size();
+        outString += String.format("%-20s","Players:" + getOnlinePlayers().size());
     }
     
     //Print the TPS info
     public static void printTps(){
-        outString += Utilities.checkTps();
+        outString += String.format("%-20s",Utilities.checkTps());
     }
 }

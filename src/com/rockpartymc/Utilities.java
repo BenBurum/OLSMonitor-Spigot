@@ -7,6 +7,7 @@ package com.rockpartymc;
 
 import java.lang.management.ManagementFactory;
 import com.sun.management.OperatingSystemMXBean;
+import java.text.DecimalFormat;
 
 
 /**
@@ -26,24 +27,25 @@ public class Utilities {
 
             //Getting the runtime reference from system
             Runtime runtime = Runtime.getRuntime();
+            
 
 
             //Print used memory
-            String usedRam = ("Used:" 
-                    + (runtime.totalMemory() - runtime.freeMemory()) / mb) ;
+            String usedRam = String.format("%-18s","Used RAM:" 
+                    + (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb");
 
             //Print free memory
-            String freeRam = ("Free:" 
-                    + runtime.freeMemory() / mb);
+            String freeRam = String.format("%-20s","Free RAM:" 
+                    + (runtime.freeMemory()) / mb + "mb");
 
             //Print total available memory
-            String totalRam = ("Total:" + runtime.totalMemory() / mb);
+            String totalRam = String.format("%-20s","Total RAM:" + (runtime.totalMemory()) / mb + "mb");
 
             //Print Maximum available memory
-            String maxRam = ("Max:" + runtime.maxMemory() / mb);
+            String maxRam = String.format("%-20s","Max RAM:" + (runtime.maxMemory()) / mb + "mb");
 
             //create string for output
-            ramInfo = "Ram: " + usedRam + " " + freeRam + " " + totalRam + " " + maxRam + " ";
+            ramInfo = usedRam + freeRam + totalRam + maxRam;
 
             return ramInfo;
 	}
@@ -60,8 +62,11 @@ public class Utilities {
             
             //get process cpu load
             double processCpuLoadDouble = (operatingSystemMXBean.getProcessCpuLoad()*100);
-            int processCpuLoadInt = (int) Math.round(processCpuLoadDouble);
-            String processCpuLoad = String.valueOf(processCpuLoadInt) + '%';
+//            int processCpuLoadInt = (int) Math.round(processCpuLoadDouble);
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(3);
+            String processCpuLoadFormatted = df.format(processCpuLoadDouble);
+            String processCpuLoad = String.valueOf(processCpuLoadFormatted) + '%';
             
             //get process cpu time
 //            String processCpuTime = "Process CPU Time: " + String.valueOf(operatingSystemMXBean.getProcessCpuTime()) + "ns";
