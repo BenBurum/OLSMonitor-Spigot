@@ -24,20 +24,18 @@ public class MainThread {
     public static void writeToFile (){
         outString = "";
         //Initialize OutputStream and save string to file.
-        try {
-            File log = new File(SMMonitor.getLogPath(), SMMonitor.getPlugin().config.getString("logfile-name") + ".monitordata");
-            FileOutputStream fos = new FileOutputStream(log);
-            FileChannel fileChannel = fos.getChannel();
-                   
-            //write to outString
-            try {
+        File log = new File(SMMonitor.getLogPath(), SMMonitor.getPlugin().config.getString("logfile-name") + ".monitordata");
+        try (FileOutputStream fos = new FileOutputStream(log,true)) {
+            
+                FileChannel fileChannel = fos.getChannel();
                 //lock the outputstream so the servermanager program can't interfere.
                 if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
                     System.out.println("[SMMonitor] - Locking Log File");
                 }
                 
                 FileLock lock = fileChannel.lock();
-
+                //Clear the contents of the file
+                fileChannel.truncate(0);
                 PrintWriter out = new PrintWriter(fos);
                 printBasic();
                 //check config for "check-ram" option
@@ -66,16 +64,9 @@ public class MainThread {
                 if (SMMonitor.getPlugin().config.getBoolean("debug-mode")){
                     System.out.println("[SMMonitor] - Unlocking Log File");
                 }
-
                 out.close();
-                fos.close();
                 
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-        catch (FileNotFoundException e){
+        } catch (IOException e){
             e.printStackTrace();
         }
         
