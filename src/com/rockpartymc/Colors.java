@@ -26,7 +26,7 @@ public final class Colors {
     public static final String B_CYAN = ESC + "[1;36m";
     public static final String BLACK = ESC + "[0;30m";
     public static final String GREY = ESC + "[1;30m";
-    public static final String WHITE = ESC + "[1m";
+    public static final String WHITE = RESET + ESC + "[1m";
     
     public static String stripColors(String s)
     {

@@ -5,6 +5,8 @@
  */
 package com.rockpartymc;
 
+import static com.rockpartymc.Colors.WHITE;
+import static com.rockpartymc.Colors.YELLOW;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -57,8 +59,11 @@ public class MainThread {
                 if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
                     System.out.println("[SMMonitor] - Writing to log file");
                 }
-                
+                //finally print the string to the log file.
                 out.println(outString);
+                //test strings to check formatting
+                System.out.println(outString + System.lineSeparator() + String.format("Command: %-25s  Type: %-7s  Schedule: %-16s Next: %-20s","start","WEEKLY","MONDAY 14:20","14h 32m 4s"));
+ //               System.out.println(String.format("Command: %-25s  Type: %-7s  Schedule: %-16s Next: %-20s","start","WEEKLY","MONDAY 14:20","14h 32m 4s"));
                 
                 if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
                     System.out.println("[SMMonitor] - Unlocking Log File");
@@ -75,12 +80,12 @@ public class MainThread {
     
     //Print Ram use info
     public static void printRam() {
-        outString += String.format("%-20s",Utilities.checkRam());
+        outString += String.format("%-35s",Utilities.checkRam());
     }
     
     //print CPU Load info
     public static void printCpu() {
-        outString += String.format("%-20s",Utilities.checkCpu());
+        outString += System.lineSeparator() + String.format("%-35s",Utilities.checkCpu());
     }
     
     //print the interval and the time
@@ -92,11 +97,11 @@ public class MainThread {
     
     //Print the number of players
     public static void printPlayers(){
-        outString += String.format("%-20s","Players:" + getOnlinePlayers().size());
+        outString += String.format("%-35s",YELLOW + "Players:" + WHITE + getOnlinePlayers().size());
     }
     
     //Print the TPS info
     public static void printTps(){
-        outString += String.format("%-20s",Utilities.checkTps());
+        outString += String.format("%-35s",Utilities.checkTps());
     }
 }

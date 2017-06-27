@@ -5,9 +5,12 @@
  */
 package com.rockpartymc;
 
+import static com.rockpartymc.Colors.WHITE;
+import static com.rockpartymc.Colors.YELLOW;
 import java.lang.management.ManagementFactory;
 import com.sun.management.OperatingSystemMXBean;
 import java.text.DecimalFormat;
+
 
 
 /**
@@ -31,18 +34,18 @@ public class Utilities {
 
 
             //Print used memory
-            String usedRam = String.format("%-18s","Used RAM:" 
+            String usedRam = String.format("%-35s",YELLOW + "Used RAM:" + WHITE +
                     + (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb");
 
             //Print free memory
-            String freeRam = String.format("%-20s","Free RAM:" 
+            String freeRam = String.format("%-35s",YELLOW + "Free RAM:" + WHITE +
                     + (runtime.freeMemory()) / mb + "mb");
 
             //Print total available memory
-            String totalRam = String.format("%-20s","Total RAM:" + (runtime.totalMemory()) / mb + "mb");
+            String totalRam = String.format("%-35s",YELLOW + "Total RAM:" + WHITE + (runtime.totalMemory()) / mb + "mb");
 
             //Print Maximum available memory
-            String maxRam = String.format("%-20s","Max RAM:" + (runtime.maxMemory()) / mb + "mb");
+            String maxRam = String.format("%-35s",YELLOW + "Max RAM:" + WHITE + (runtime.maxMemory()) / mb + "mb");
 
             //create string for output
             ramInfo = usedRam + freeRam + totalRam + maxRam;
@@ -75,7 +78,7 @@ public class Utilities {
 //            String systemCpuLoad = "System CPU Load: " + String.valueOf(operatingSystemMXBean.getSystemCpuLoad()*100) + '%';
             
             //create string for output
-            cpuInfo = System.lineSeparator() + "CPU:" + processCpuLoad + " ";
+            cpuInfo = YELLOW + "CPU:" + WHITE + processCpuLoad + " ";
 
             
             return cpuInfo;
@@ -87,7 +90,7 @@ public class Utilities {
             }
             String tpsInfo = new String();
             double tps = Lag.getTPS();
-            tpsInfo = "TPS:" + String.valueOf(tps) + " ";
+            tpsInfo = YELLOW + "TPS:" + WHITE + String.valueOf(tps) + " ";
             
             return tpsInfo;
         }
