@@ -5,8 +5,8 @@
  */
 package com.rockpartymc;
 
-import static com.rockpartymc.Colors.WHITE;
-import static com.rockpartymc.Colors.YELLOW;
+
+import com.rockpartymc.servermanager.consolecommunication.Colors;
 import java.lang.management.ManagementFactory;
 import com.sun.management.OperatingSystemMXBean;
 import java.text.DecimalFormat;
@@ -34,18 +34,18 @@ public class Utilities {
 
 
             //Print used memory
-            String usedRam = String.format("%-35s",YELLOW + "Used RAM:" + WHITE +
+            String usedRam = String.format("%-25s","$_Y" + "Used RAM:" + "$_W" +
                     + (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb");
 
             //Print free memory
-            String freeRam = String.format("%-35s",YELLOW + "Free RAM:" + WHITE +
+            String freeRam = String.format("%-25s","$_Y" + "Free RAM:" + "$_W" +
                     + (runtime.freeMemory()) / mb + "mb");
 
             //Print total available memory
-            String totalRam = String.format("%-35s",YELLOW + "Total RAM:" + WHITE + (runtime.totalMemory()) / mb + "mb");
+            String totalRam = String.format("%-25s","$_Y" + "Total RAM:" + "$_W" + (runtime.totalMemory()) / mb + "mb");
 
             //Print Maximum available memory
-            String maxRam = String.format("%-35s",YELLOW + "Max RAM:" + WHITE + (runtime.maxMemory()) / mb + "mb");
+            String maxRam = String.format("%-25s","$_Y" + "Max RAM:" + "$_W" + (runtime.maxMemory()) / mb + "mb");
 
             //create string for output
             ramInfo = usedRam + freeRam + totalRam + maxRam;
@@ -78,7 +78,7 @@ public class Utilities {
 //            String systemCpuLoad = "System CPU Load: " + String.valueOf(operatingSystemMXBean.getSystemCpuLoad()*100) + '%';
             
             //create string for output
-            cpuInfo = YELLOW + "CPU:" + WHITE + processCpuLoad + " ";
+            cpuInfo = "$_Y" + "CPU:" + "$_W" + processCpuLoad + " ";
 
             
             return cpuInfo;
@@ -90,7 +90,7 @@ public class Utilities {
             }
             String tpsInfo = new String();
             double tps = Lag.getTPS();
-            tpsInfo = YELLOW + "TPS:" + WHITE + String.valueOf(tps) + " ";
+            tpsInfo = "$_Y" + "TPS:" + "$_W" + String.valueOf(tps) + " ";
             
             return tpsInfo;
         }
