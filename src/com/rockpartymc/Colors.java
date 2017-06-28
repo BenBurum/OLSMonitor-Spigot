@@ -38,9 +38,9 @@ public final class Colors {
     
     public static String translateColors(String s)
     {
-        return s.replace("$_W",WHITE).replace("$_R",RED).replace("$BR",B_RED).replace("$_G",GREEN)
+        return s.replace("$$W",WHITE).replace("$_R",RED).replace("$BR",B_RED).replace("$_G",GREEN)
                 .replace("$BG",B_GREEN).replace("$_Y",YELLOW).replace("$BY",B_YELLOW).replace("$_B",BLUE)
                 .replace("$BB",B_BLUE).replace("$_P",PURPLE).replace("$BP",B_PURPLE).replace("$_C",CYAN)
-                .replace("$BC",B_CYAN).replace("$_K",BLACK).replace("$_G",GREY).replace("$_R",RESET);
+                .replace("$BC",B_CYAN).replace("$$B",BLACK).replace("$$G",GREY).replace("$_R",RESET);
     }
 }
