@@ -5,8 +5,8 @@
  */
 package com.rockpartymc;
 
-import static com.rockpartymc.Colors.WHITE;
-import static com.rockpartymc.Colors.YELLOW;
+
+import com.rockpartymc.servermanager.consolecommunication.Colors;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -61,8 +61,12 @@ public class MainThread {
                 }
                 //finally print the string to the log file.
                 out.println(outString);
+                
                 //test strings to check formatting
-                System.out.println(outString + System.lineSeparator() + String.format("Command: %-25s  Type: %-7s  Schedule: %-16s Next: %-20s","start","WEEKLY","MONDAY 14:20","14h 32m 4s"));
+                if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")) {
+                    System.out.println(Colors.translateColors(outString));
+                }
+                
  //               System.out.println(String.format("Command: %-25s  Type: %-7s  Schedule: %-16s Next: %-20s","start","WEEKLY","MONDAY 14:20","14h 32m 4s"));
                 
                 if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
@@ -80,12 +84,12 @@ public class MainThread {
     
     //Print Ram use info
     public static void printRam() {
-        outString += String.format("%-35s",Utilities.checkRam());
+        outString += String.format("%-25s",Utilities.checkRam());
     }
     
     //print CPU Load info
     public static void printCpu() {
-        outString += System.lineSeparator() + String.format("%-35s",Utilities.checkCpu());
+        outString += System.lineSeparator() + String.format("%-25s",Utilities.checkCpu());
     }
     
     //print the interval and the time
@@ -97,11 +101,11 @@ public class MainThread {
     
     //Print the number of players
     public static void printPlayers(){
-        outString += String.format("%-35s",YELLOW + "Players:" + WHITE + getOnlinePlayers().size());
+        outString += String.format("%-25s",Colors.translateColors("$_Y") + "Players:" + Colors.translateColors("$_W") + getOnlinePlayers().size());
     }
     
     //Print the TPS info
     public static void printTps(){
-        outString += String.format("%-35s",Utilities.checkTps());
+        outString += String.format("%-25s",Utilities.checkTps());
     }
 }

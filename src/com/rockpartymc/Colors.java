@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rockpartymc;
+package com.rockpartymc.servermanager.consolecommunication;
 
 /**
  *
@@ -30,9 +30,17 @@ public final class Colors {
     
     public static String stripColors(String s)
     {
-        return s.replace(RESET, "").replace(RED, "").replace(B_RED, "").replace(GREEN, "")
+        return s.replace(WHITE, "").replace(RED, "").replace(B_RED, "").replace(GREEN, "")
                 .replace(B_GREEN, "").replace(YELLOW, "").replace(B_YELLOW, "").replace(BLUE, "")
                 .replace(B_BLUE, "").replace(PURPLE, "").replace(B_PURPLE, "").replace(CYAN, "")
-                .replace(B_CYAN, "").replace(BLACK, "").replace(GREY, "").replace(WHITE, "");
+                .replace(B_CYAN, "").replace(BLACK, "").replace(GREY, "").replace(RESET, "");
+    }
+    
+    public static String translateColors(String s)
+    {
+        return s.replace("$_W",WHITE).replace("$_R",RED).replace("$BR",B_RED).replace("$_G",GREEN)
+                .replace("$BG",B_GREEN).replace("$_Y",YELLOW).replace("$BY",B_YELLOW).replace("$_B",BLUE)
+                .replace("$BB",B_BLUE).replace("$_P",PURPLE).replace("$BP",B_PURPLE).replace("$_C",CYAN)
+                .replace("$BC",B_CYAN).replace("$_K",BLACK).replace("$_G",GREY).replace("$_R",RESET);
     }
 }
