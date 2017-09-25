@@ -34,18 +34,18 @@ public class Utilities {
 
 
             //Print used memory
-            String usedRam = String.format("%-25s","$_Y" + "Used RAM:" + "$_W" +
+            String usedRam = String.format("%-25s","$_Y" + "Used RAM:" + "$$W" +
                     + (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb");
 
             //Print free memory
-            String freeRam = String.format("%-25s","$_Y" + "Free RAM:" + "$_W" +
+            String freeRam = String.format("%-25s","$_Y" + "Free RAM:" + "$$W" +
                     + (runtime.freeMemory()) / mb + "mb");
 
             //Print total available memory
-            String totalRam = String.format("%-25s","$_Y" + "Total RAM:" + "$_W" + (runtime.totalMemory()) / mb + "mb");
+            String totalRam = String.format("%-25s","$_Y" + "Total RAM:" + "$$W" + (runtime.totalMemory()) / mb + "mb");
 
             //Print Maximum available memory
-            String maxRam = String.format("%-25s","$_Y" + "Max RAM:" + "$_W" + (runtime.maxMemory()) / mb + "mb");
+            String maxRam = String.format("%-25s","$_Y" + "Max RAM:" + "$$W" + (runtime.maxMemory()) / mb + "mb");
 
             //create string for output
             ramInfo = usedRam + freeRam + totalRam + maxRam;
@@ -78,7 +78,7 @@ public class Utilities {
 //            String systemCpuLoad = "System CPU Load: " + String.valueOf(operatingSystemMXBean.getSystemCpuLoad()*100) + '%';
             
             //create string for output
-            cpuInfo = "$_Y" + "CPU:" + "$_W" + processCpuLoad + " ";
+            cpuInfo = "$_Y" + "CPU:" + "$$W" + processCpuLoad + " ";
 
             
             return cpuInfo;
@@ -90,7 +90,7 @@ public class Utilities {
             }
             String tpsInfo = new String();
             double tps = Lag.getTPS();
-            tpsInfo = "$_Y" + "TPS:" + "$_W" + String.valueOf(tps) + " ";
+            tpsInfo = "$_Y" + "TPS:" + "$$W" + String.valueOf(tps) + " ";
             
             return tpsInfo;
         }
