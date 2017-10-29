@@ -101,7 +101,7 @@ public class MainThread {
     
     //Print the number of players
     public static void printPlayers(){
-        outString += String.format("%-25s",Colors.translateColors("$_Y") + "Players:" + Colors.translateColors("$_W") + getOnlinePlayers().size());
+        outString += String.format("%-25s","$_Y" + "Players:" + "$$W" + getOnlinePlayers().size());
     }
     
     //Print the TPS info
