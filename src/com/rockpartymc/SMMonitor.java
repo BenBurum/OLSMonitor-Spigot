@@ -13,7 +13,7 @@ plugin.yml,
 package com.rockpartymc;
 
 import java.io.File;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -112,6 +112,7 @@ public class SMMonitor extends JavaPlugin {
         //Start the scheduled task
         public static void startScheduler(){
             //schedule the task
+     //      Bukkit.getServer().getScheduler().cancelTask(schedId);
            BukkitScheduler scheduler = SMMonitor.getPlugin().getServer().getScheduler();
            SMMonitor.schedId = scheduler.scheduleSyncRepeatingTask(SMMonitor.getPlugin(), new Runnable() {
 
@@ -121,7 +122,9 @@ public class SMMonitor extends JavaPlugin {
                    MainThread.writeToFile();
 
                }
+               
            }, 0L, interval);
+   //        Bukkit.getServer().getScheduler().cancelTask(schedId);
         }
 }
 
