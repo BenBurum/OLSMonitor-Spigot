@@ -65,7 +65,7 @@ public class SMMonitor extends JavaPlugin {
                 
             }
         }
-        startScheduler()
+        startScheduler();
     }
     
     @Override
