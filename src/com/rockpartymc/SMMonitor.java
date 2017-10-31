@@ -65,31 +65,7 @@ public class SMMonitor extends JavaPlugin {
                 
             }
         }
-        
-//        Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable(){
-//            @Override
-//            public void run(){
-                //schedule the task
-                BukkitScheduler scheduler = getServer().getScheduler();
-                scheduler.scheduleSyncRepeatingTask(SMMonitor.getPlugin(), new Thread() {
-
-                //gets current time in ms 
-                    @Override
-                    public void run() {
-                        if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
-                            System.out.println("[SMMonitor] - Initiating Output:");
-                        }
-                        MainThread.writeToFile();
-
-                    }
-                }, 0L, interval);
-//            }
-        
-//        });
-        
-
-        
-        
+        startScheduler()
     }
     
     @Override
