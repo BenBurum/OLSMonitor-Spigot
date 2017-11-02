@@ -25,13 +25,13 @@ public class MainThread {
     public static void writeToFile (){
         outString = "";
         //Initialize OutputStream and save string to file.
-        File log = new File(SMMonitor.getLogPath(), SMMonitor.getPlugin().getConfig().getString("logfile-name") + ".monitordata");
-        try (FileOutputStream fos = new FileOutputStream(log,true)) {
+        File monitordata = new File(OLSMonitor.getLogPath(), OLSMonitor.getPlugin().getConfig().getString("monitordata-file-name") + ".monitordata");
+        try (FileOutputStream fos = new FileOutputStream(monitordata,true)) {
             
                 FileChannel fileChannel = fos.getChannel();
                 //lock the outputstream so the servermanager program can't interfere.
-                if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
-                    System.out.println("[SMMonitor] - Locking Log File");
+                if (OLSMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
+                    System.out.println("[OLSMonitor] - Locking monitor data File");
                 }
                 
                 FileLock lock = fileChannel.lock();
@@ -40,37 +40,37 @@ public class MainThread {
                 PrintWriter out = new PrintWriter(fos);
                 printBasic();
                 //check config for "check-ram" option
-                if (SMMonitor.getPlugin().getConfig().getBoolean("check-ram")){
+                if (OLSMonitor.getPlugin().getConfig().getBoolean("check-ram")){
                     printRam();
                 }
                 //check config for "check-CPU" option
-                if (SMMonitor.getPlugin().getConfig().getBoolean("check-CPU")){
+                if (OLSMonitor.getPlugin().getConfig().getBoolean("check-CPU")){
                     printCpu();
                 }
                 //Check config cor "check-tps" option
-                 if (SMMonitor.getPlugin().getConfig().getBoolean("check-tps")){
+                 if (OLSMonitor.getPlugin().getConfig().getBoolean("check-tps")){
                     printTps();
                 }
                 //check config for "list-players" option
-                if (SMMonitor.getPlugin().getConfig().getBoolean("list-players")){
+                if (OLSMonitor.getPlugin().getConfig().getBoolean("list-players")){
                     printPlayers();
                 }
-                //Finally print the string to the log and close writers.
-                if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
-                    System.out.println("[SMMonitor] - Writing to log file");
+                //Finally print the string to the monitordata file and close writers.
+                if (OLSMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
+                    System.out.println("[OLSMonitor] - Writing to monitor data file");
                 }
-                //finally print the string to the log file.
+                //finally print the string to the monitordata file.
                 out.println(outString);
                 
                 //test strings to check formatting
-                if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")) {
+                if (OLSMonitor.getPlugin().getConfig().getBoolean("debug-mode")) {
                     System.out.println(Colors.translateColors(outString));
                 }
                 
  //               System.out.println(String.format("Command: %-25s  Type: %-7s  Schedule: %-16s Next: %-20s","start","WEEKLY","MONDAY 14:20","14h 32m 4s"));
                 
-                if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
-                    System.out.println("[SMMonitor] - Unlocking Log File");
+                if (OLSMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
+                    System.out.println("[OLSMonitor] - Unlocking monitor data File");
                 }
                 out.close();
                 
@@ -95,7 +95,7 @@ public class MainThread {
     //print the interval and the time
     public static void printBasic(){
         long timeNow = System.currentTimeMillis();
-        outString += (SMMonitor.interval*50) + System.lineSeparator();
+        outString += (OLSMonitor.interval*50) + System.lineSeparator();
         outString += String.valueOf(timeNow) + System.lineSeparator();
     }
     

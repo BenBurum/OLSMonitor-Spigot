@@ -18,24 +18,24 @@ import org.bukkit.scheduler.BukkitScheduler;
 public class Reload implements CommandExecutor {
     
     @Override
-    public boolean onCommand(CommandSender sender, Command smmonitor, String label, String[] args){
+    public boolean onCommand(CommandSender sender, Command olsmonitor, String label, String[] args){
             if (args.length > 0){
                     if (args[0].equals("reload")){
-                        sender.sendMessage("[SMMonitor] - Reloading config.");
-                        System.out.println("Cancelling SchedId: " + SMMonitor.schedId);
-                        Bukkit.getServer().getScheduler().cancelTask(SMMonitor.schedId);
-                        BukkitScheduler scheduler = SMMonitor.getPlugin().getServer().getScheduler();
-                        System.out.println("Is still running?: " + scheduler.isCurrentlyRunning(SMMonitor.schedId));
+                        sender.sendMessage("[OLSMonitor] - Reloading config.");
+                        System.out.println("Cancelling SchedId: " + OLSMonitor.schedId);
+                        Bukkit.getServer().getScheduler().cancelTask(OLSMonitor.schedId);
+                        BukkitScheduler scheduler = OLSMonitor.getPlugin().getServer().getScheduler();
+                        System.out.println("Is still running?: " + scheduler.isCurrentlyRunning(OLSMonitor.schedId));
                         //reload the config file
-                        SMMonitor.getPlugin().reloadConfig();
-                        //attmept to reset the path for log file
-                        SMMonitor.setCustomPath();
+                        OLSMonitor.getPlugin().reloadConfig();
+                        //attmept to reset the path for monitordata file
+                        OLSMonitor.setCustomPath();
                         //get interval from config
-                        SMMonitor.interval = SMMonitor.getPlugin().getConfig().getInt("log-interval");
-                        System.out.println("[SMMonitor] - Log interval set to " + SMMonitor.interval + " ticks");
+                        OLSMonitor.interval = OLSMonitor.getPlugin().getConfig().getInt("monitor-interval");
+                        System.out.println("[OLSMonitor] - Log interval set to " + OLSMonitor.interval + " ticks");
                         
-                        System.out.println("[SMMonitor] - restarting scheduler");
-                        SMMonitor.startScheduler();
+                        System.out.println("[OLSMonitor] - restarting scheduler");
+                        OLSMonitor.startScheduler();
                     }
             }
             else {

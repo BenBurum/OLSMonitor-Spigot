@@ -20,8 +20,8 @@ import java.text.DecimalFormat;
 public class Utilities {
     	public static String checkRam() {
                 
-            if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
-                System.out.println("[SMMonitor] - Checking Ram");
+            if (OLSMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
+                System.out.println("[OLSMonitor] - Checking Ram");
             }
             
 
@@ -54,8 +54,8 @@ public class Utilities {
 	}
         
         public static String checkCpu() {
-            if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
-                System.out.println("[SMMonitor] - Checking CPU");
+            if (OLSMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
+                System.out.println("[OLSMonitor] - Checking CPU");
             }
             OperatingSystemMXBean operatingSystemMXBean = (com.sun.management.OperatingSystemMXBean)ManagementFactory.getOperatingSystemMXBean();
             String cpuInfo = new String();
@@ -85,8 +85,8 @@ public class Utilities {
         }
         
         public static String checkTps(){
-            if (SMMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
-                System.out.println("[SMMonitor] - Checking TPS");
+            if (OLSMonitor.getPlugin().getConfig().getBoolean("debug-mode")){
+                System.out.println("[OLSMonitor] - Checking TPS");
             }
             String tpsInfo = new String();
             double tps = Lag.getTPS();
