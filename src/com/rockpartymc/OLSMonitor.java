@@ -36,6 +36,7 @@ public class OLSMonitor extends JavaPlugin {
         pluginReference = this;
         dataPath = this.getDataFolder();
         getConfig().addDefault("debug-mode", false);
+        getConfig().addDefault("print-data-to-console", false);
         getConfig().addDefault("check-ram", true);
         getConfig().addDefault("check-CPU", true);
         getConfig().addDefault("check-tps", true);

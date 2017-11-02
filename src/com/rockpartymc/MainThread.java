@@ -62,8 +62,8 @@ public class MainThread {
                 //finally print the string to the monitordata file.
                 out.println(outString);
                 
-                //test strings to check formatting
-                if (OLSMonitor.getPlugin().getConfig().getBoolean("debug-mode")) {
+                //test strings to check formatting and then print to console
+                if (OLSMonitor.getPlugin().getConfig().getBoolean("print-data-to-console")) {
                     System.out.println(Colors.translateColors(outString));
                 }
                 
