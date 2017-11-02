@@ -25,7 +25,7 @@ public class MainThread {
     public static void writeToFile (){
         outString = "";
         //Initialize OutputStream and save string to file.
-        File monitordata = new File(OLSMonitor.getLogPath(), OLSMonitor.getPlugin().getConfig().getString("monitordata-file-name") + ".monitordata");
+        File monitordata = new File(OLSMonitor.getDataPath(), OLSMonitor.getPlugin().getConfig().getString("monitordata-file-name") + ".monitordata");
         try (FileOutputStream fos = new FileOutputStream(monitordata,true)) {
             
                 FileChannel fileChannel = fos.getChannel();

@@ -22,10 +22,8 @@ public class Reload implements CommandExecutor {
             if (args.length > 0){
                     if (args[0].equals("reload")){
                         sender.sendMessage("[OLSMonitor] - Reloading config.");
-                        System.out.println("Cancelling SchedId: " + OLSMonitor.schedId);
                         Bukkit.getServer().getScheduler().cancelTask(OLSMonitor.schedId);
                         BukkitScheduler scheduler = OLSMonitor.getPlugin().getServer().getScheduler();
-                        System.out.println("Is still running?: " + scheduler.isCurrentlyRunning(OLSMonitor.schedId));
                         //reload the config file
                         OLSMonitor.getPlugin().reloadConfig();
                         //attmept to reset the path for monitordata file

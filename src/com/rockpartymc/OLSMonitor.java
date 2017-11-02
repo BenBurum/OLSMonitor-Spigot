@@ -79,7 +79,7 @@ public class OLSMonitor extends JavaPlugin {
     }
     
     //return the path to the monitordata file.
-    public static File getLogPath(){
+    public static File getDataPath(){
         return dataPath;
     }
 
