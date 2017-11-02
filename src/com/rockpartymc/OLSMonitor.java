@@ -40,7 +40,7 @@ public class OLSMonitor extends JavaPlugin {
         getConfig().addDefault("check-ram", true);
         getConfig().addDefault("check-CPU", true);
         getConfig().addDefault("check-tps", true);
-        getConfig().addDefault("list-players", true);
+        getConfig().addDefault("count-players", true);
         getConfig().addDefault("monitordata-file-name", "data");
         getConfig().addDefault("custom-data-path", false);
         getConfig().addDefault("custom-path-location", "plugins\\OLSMonitor");

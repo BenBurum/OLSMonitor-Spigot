@@ -51,8 +51,8 @@ public class MainThread {
                  if (OLSMonitor.getPlugin().getConfig().getBoolean("check-tps")){
                     printTps();
                 }
-                //check config for "list-players" option
-                if (OLSMonitor.getPlugin().getConfig().getBoolean("list-players")){
+                //check config for "count-players" option
+                if (OLSMonitor.getPlugin().getConfig().getBoolean("count-players")){
                     printPlayers();
                 }
                 //Finally print the string to the monitordata file and close writers.
