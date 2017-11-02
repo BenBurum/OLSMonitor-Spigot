@@ -19,6 +19,7 @@ public class Reload implements CommandExecutor {
     
     @Override
     public boolean onCommand(CommandSender sender, Command olsmonitor, String label, String[] args){
+        if (sender.isOp()) {
             if (args.length > 0){
                     if (args[0].equals("reload")){
                         sender.sendMessage("[OLSMonitor] - Reloading config.");
@@ -36,9 +37,14 @@ public class Reload implements CommandExecutor {
                         OLSMonitor.startScheduler();
                     }
             }
-            else {
+                   else {
                 sender.sendMessage("Possible Commands: " + "/smm reload");
             }
+        }
+        else {
+            sender.sendMessage("[OLSMonitor - You do not have permission to use that command.");
+        }
+
         return true;
     }
     
