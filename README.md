@@ -1,11 +1,11 @@
 # OLSMonitor-Spigot
-#Oasis Light Server Monitor
-##Overview:
+# Oasis Light Server Monitor
+## Overview:
 
 OLSMonitor is a simple Minecraft plugin to monitor server data.  For full functionality such as crash/inactivity monitoring, automatic restarts, and more it is highly recommended that you use it in conjunction with the [Oasis Light Server Manager] (https://github.com/OasisArtisan/OasisLight-ServerManager) java program by OasisArtisan.  OSLSMonitor can also be used as a standalone plugin to print server data to the console and to a file.  The available data to monitor include RAM use, CPU use, server TPS, and player count.
 
-##Config:
-###The following options are configurable in config.yml
+## Config:
+### The following options are configurable in config.yml
 
 *print debug messages to the console*
 debug-mode: false
@@ -38,11 +38,11 @@ custom-path-location: plugins\OLSMonitor
 monitor-interval: 600
 
 
-##Commands:
+## Commands:
 
 There is only one command for OLSMonitor: /olsmonitor reload (alias olsm reload).  This command will reload the config file.  Requires OP.
 
-##Permissions:
+## Permissions:
 
 None.
 
