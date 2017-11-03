@@ -47,7 +47,7 @@ monitordata-file-name: data
 custom-data-path: false
 
 
-*Set a custom path for the monitordata file.  **Requires custom-data-path: true** *
+*Set a custom path for the monitordata file.  **Requires custom-data-path: true***
 
 custom-path-location: plugins\OLSMonitor
 
