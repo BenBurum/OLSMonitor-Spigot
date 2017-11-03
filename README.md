@@ -65,4 +65,5 @@ There is only one command for OLSMonitor: /olsmonitor reload (alias olsm reload)
 
 None.
 
-
+##For Developers:
+Feel free to use this program in combination with any plugin or server manager you like.  The first line of the .monitordata file is the monitor interval in ms and the second line is a timestamp which can be used to check for inactivity.  The following lines will be the server data with color codes.
