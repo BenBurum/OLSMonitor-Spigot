@@ -1,7 +1,7 @@
 ## YAML Template.
 ---
 name: OLSMonitor
-version: 1.3
+version: 1.5
 author: Rocktopod
 main: com.rockpartymc.OLSMonitor
 
