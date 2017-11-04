@@ -64,6 +64,8 @@ public class MainThread {
                 
                 //test strings to check formatting and then print to console
                 if (OLSMonitor.getPlugin().getConfig().getBoolean("print-data-to-console")) {
+                    outString = outString.substring(outString.indexOf('\n')+1);
+                    outString = outString.substring(outString.indexOf('\n')+1);
                     System.out.println(Colors.translateColors(outString));
                 }
                 
